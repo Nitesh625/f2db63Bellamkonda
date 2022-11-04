@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+  h1= title
+  - var result = [{"movieName":"RRR","movieType":"Adevnture","durMin":165},{"movieName":"majnu","movieType":"love story","durMin":146},{"movieName":"akanda","movieType":"action","durMin":215}]
+  div.container-fluid
+     div.row
+        each item,index in result
+            div.col-sm-2(onclick=`buy(${index})`) Name: #{item["movieName"]}  <br>   Type: #{item["movieType"]} <br> Time: #{item["durMin"]} 
+  script.
+      function buy(index){
+         alert("you purchased item "+(index+1))
+      }
