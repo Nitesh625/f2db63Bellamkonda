@@ -10,7 +10,7 @@ exports.Movie_detail = function(req, res) {
 
 exports.Movie_create_post = async function(req, res) {
     console.log(req.body)
-    let document = new movie();
+    let document = new Movie();
     document.movieName = req.body.movieName;
     document.movieType = req.body.movieType;
     document.durMin = req.body.durMin;
