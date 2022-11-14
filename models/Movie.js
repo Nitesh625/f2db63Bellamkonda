@@ -5,5 +5,4 @@ const MovieSchema = mongoose.Schema({
  durMin: Number 
 }) 
  
-module.exports = mongoose.model("Movie", 
-MovieSchema) 
+module.exports = mongoose.model("Movie", MovieSchema) 
