@@ -15,6 +15,18 @@ exports.Movie_create_post = function(req, res) {
 exports.Movie_delete = function(req, res) {
  res.send('NOT IMPLEMENTED: Movie delete DELETE ' + req.params.id);
 };
+// Handle Costume delete on DELETE. 
+exports.Movie_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Movie.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
 // Handle Movie update form on PUT.
 exports.Movie_update_put = function(req, res) {
  res.send('NOT IMPLEMENTED: Movie update PUT' + req.params.id);
@@ -94,4 +106,58 @@ ${JSON.stringify(req.body)}`)
  res.send(`{"error": ${err}: Update for id ${req.params.id}
 failed`);
  }
+};
+// Handle a show one view with id specified by query 
+exports.Movie_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Movie.findById( req.query.id) 
+        res.render('Moviedetail',  { title: 'Movie Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle building the view for creating a Earpods. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.Movie_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('Moviecreate', { title: 'Movie Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle building the view for updating a Earpods. 
+// query provides the id 
+exports.Movie_update_Page =  async function(req, res) { 
+    console.log("update view for item "+req.query.id) 
+    try{ 
+        let result = await Earpods.findById(req.query.id) 
+        res.render('Movieupdate', { title: 'Movie Update', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`);
+} 
+}; 
+
+// Handle a delete one view with id from query 
+exports.Movie_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await Movie.findById(req.query.id) 
+        res.render('Moviedelete', { title: 'Movie Delete', toShow: 
+result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
 };
