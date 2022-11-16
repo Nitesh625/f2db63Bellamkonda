@@ -1,0 +1,23 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let Movie  = toShow._id   
+  - let movieName = toShow.movieName
+  - let movieType = toShow.movieType
+  - let durMin = toShow.durMin 
+
+  div 
+    div.row 
+    div(class='MovieAttr mr-3') Movie ID is: 
+    div #{Movie} 
+    div.row 
+    div(class='MovieAttr mr-3') Movie Name is: 
+    div #{movieName} 
+    div.row 
+    div(class='MovieAttr mr-3') Movie Type is: 
+    div #{movieType} 
+    div.row 
+    div(class='MovieAttr mr-3') Movie durMin is: 
+    div #{durMin} 
