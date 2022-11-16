@@ -1,0 +1,31 @@
+extends layout
+block content
+        h1= title
+        form(id='MovieForm', action="/resource/Movie", method="POST")
+            div.form-group
+                label.MovieAttr(for='movieName') Movie Name 
+                input#movieName(type='text', name='movieName')
+            div.form-group
+                label.MovieAttr(for='movieType') Movie Type
+                input#movieType(type='text', name='movieType')
+            div.form-group
+                label.MovieAttr(for='durMin') Movie durMin
+                input#durMin(type='number', name='durMin')
+            input(type="submit")
+            script.
+                document.forms['MovieForm'].addEventListener('submit', (event) => {
+                event.preventDefault();
+            // TODO do something here to show user that form is being submitted
+                fetch(event.target.action, {
+                    method: 'POST',
+                    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+                }).then((resp) => {
+                    return resp.json(); // or resp.text() or whatever the server sends
+                }).then((body) => {
+                    alert("Save succeded")
+                // TODO handle body
+                }).catch((error) => {
+                // TODO handle error
+                    alert("Save failed " + error )
+                });
+               });
