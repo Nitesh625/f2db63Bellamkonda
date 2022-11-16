@@ -1,0 +1,54 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let Movieid = toShow._id 
+    - let movieName = toShow.movieName 
+    - let movieType = toShow.movieType 
+    - let durMin = toShow.durMin 
+    - let actionid = "/resource/Movie/" + Movieid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='MovieAttr mr-3') Movie ID is: 
+        div #{Movieid} 
+      div.row 
+        div(class='MovieAttr mr-3') Movie Name is: 
+        div #{movieName} 
+      div.row 
+        div(class='MovieAttr mr-3') Movie Type  is: 
+        div #{movieType} 
+      div.row 
+        div(class='MovieAttr mr-3') Movie durMin is: 
+        div #{durMin}
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the Earpods collection 
+      window.location.href='/Movie' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      
+      }).then((resp) => { 
+        return resp.json(); 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/Movie' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 
+ 

@@ -66,7 +66,7 @@ exports.Movie_create_post = async function(req, res) {
     // {"Movie_type":"goat", "cost":12, "size":"large"}
     document.movieName = req.body.movieName;
     document.movieType = req.body.movieType;
-    document.durMin = req.body.Movie_type;
+    document.durMin = req.body.durMin;
     try{
     let result = await document.save();
     res.send(result);
@@ -120,7 +120,7 @@ exports.Movie_view_one_Page = async function(req, res) {
     } 
 }; 
 
-// Handle building the view for creating a Earpods. 
+// Handle building the view for creating a Movie. 
 // No body, no in path parameter, no query. 
 // Does not need to be async 
 exports.Movie_create_Page =  function(req, res) { 
@@ -134,12 +134,12 @@ exports.Movie_create_Page =  function(req, res) {
     } 
 }; 
 
-// Handle building the view for updating a Earpods. 
+// Handle building the view for updating a Movie. 
 // query provides the id 
 exports.Movie_update_Page =  async function(req, res) { 
     console.log("update view for item "+req.query.id) 
     try{ 
-        let result = await Earpods.findById(req.query.id) 
+        let result = await Movie.findById(req.query.id) 
         res.render('Movieupdate', { title: 'Movie Update', toShow: result }); 
     } 
     catch(err){ 
