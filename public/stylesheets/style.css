@@ -4,5 +4,9 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: hsl(135, 100%, 50%);
+}
+.MovieAttr { 
+  background-color: rgb(236, 243, 43); 
+  width: 120px; 
 }
