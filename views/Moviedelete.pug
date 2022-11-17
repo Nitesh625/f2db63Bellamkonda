@@ -1,7 +1,7 @@
 extends layout 
  
 block content 
-  h1= title 
+  h1(class='container-fluid p-5 bg-warning text-center text-primary')= title 
  
   if (toShow == null) 
     h2 No instance to delete 
@@ -14,9 +14,11 @@ block content
     script let actionid = "#{actionid}" 
     div 
       div.row 
+       div(class='p-2 text-center text-dark',style='background-color:green')
         div(class='MovieAttr mr-3') Movie ID is: 
         div #{Movieid} 
       div.row 
+         
         div(class='MovieAttr mr-3') Movie Name is: 
         div #{movieName} 
       div.row 

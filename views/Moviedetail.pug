@@ -1,7 +1,7 @@
 extends layout 
  
 block content 
-  h1= title 
+  h1(class='container-fluid p-5 bg-danger text-center text-secondary ',style ='background-color:lightblue')=title 
  
   - let Movie  = toShow._id   
   - let movieName = toShow.movieName
@@ -13,11 +13,11 @@ block content
     div(class='MovieAttr mr-3') Movie ID is: 
     div #{Movie} 
     div.row 
-    div(class='MovieAttr mr-3') Movie Name is: 
+    div(class='MovieAttr bg-primary  mr-3') Movie Name is: 
     div #{movieName} 
     div.row 
-    div(class='MovieAttr mr-3') Movie Type is: 
+    div(class='MovieAttr bg-secondary mr-3') Movie Type is: 
     div #{movieType} 
     div.row 
-    div(class='MovieAttr mr-3') Movie durMin is: 
+    div(class='MovieAttr bg-warning mr-3') Movie durMin is: 
     div #{durMin} 
