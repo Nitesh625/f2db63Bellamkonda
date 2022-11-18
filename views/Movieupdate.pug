@@ -1,28 +1,29 @@
 extends layout 
  
 block content 
-  h1(class='container-fluid p-5 bg-primary text-center text-secondary ')= title 
- 
+  h1(class='container-fluid p-5 bg-danger text-center text-black ')= title 
   - let Movieid = toShow._id 
   - let movieName = toShow.movieName 
   - let movieType = toShow.movieType 
   - let durMin = toShow.durMin 
    
-  div.row(class='justify-content p-2 bg-secondary mb-2') 
+  div.row(class='p-1 bg-info mb-1') 
     div.mr-1 ID is 
     div #{Movieid} 
   - let actionid = "/resource/Movie/" + Movieid 
   form(id='MovieForm', action= actionid, method="PUT") 
     div.form-group 
-        label.MovieAttr(for='movieName') Movie Name 
+        label.MovieAttr(for='movieName',class='p-1 bg- m-1') Movie Name 
         input#movieName(type='text', name='movieName', value= movieName ) 
+        
     div.form-group 
-        label.MovieAttr(for='movieType') Movie Type 
+        label.MovieAttr(for='movieType',class='p-1 bg-Green m-1 ') Movie Type 
         input#movieType(type='text', name='movieType', value= movieType ) 
     div.form-group 
         label.MovieAttr(for='durMin') durMin 
-        input#durMin(type='number', name='durMin', value= durMin  ) 
+        input#durMin(type='number', name='durMin', value= durMin  )       
     input(type="submit") 
+    
  
   script. 
     document.forms['MovieForm'].addEventListener('submit', (event) => { 

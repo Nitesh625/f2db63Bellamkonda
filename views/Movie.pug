@@ -1,18 +1,16 @@
 extends layout
 
 block content
-
   h1= title
-  - var result = [{"movieName":"RRR","movieType":"Adevnture","durMin":165},{"movieName":"majnu","movieType":"love story","durMin":146},{"movieName":"akanda","movieType":"action","durMin":215}]
-  div.container-fluid
-     div.row
-        each item,index in result
-            div.col-sm-2(onclick=`buy(${index})`) Name: #{item["movieName"]}  <br>   Type: #{item["movieType"]} <br> Time: #{item["durMin"]} 
+  - var results = results
+  div(class="container-fluid")
+    div(class="row m-1")
+      each item in results  
+        - let destination = `dispatch(\"/Movie/update?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.movieName}(#{item.movieType}) is #{item.durMin}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+   
   script.
-      function buy(index){
-         alert("you purchased item "+(index+1))
-      }
-      button(type='button',value='ok')ok
-      button(type='button',value='save')save
-      button(type='button',value='update')update
-      button(type='button',value='delete')delete
+    function dispatch(path){
+      window.location.href=path
+    }
