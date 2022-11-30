@@ -8,7 +8,7 @@ block content
     div(class="row m-1")
       each item in results  
         - let destination = `dispatch(\"/Movie/update?id=${item._id}\")`
-        div(class="row-sm-2", class="m-1") Item #{item.movieName}(#{item.Type}) is #{item.Earp_Price}
+        div(class="row-sm-2", class="m-1") Item #{item.movieName}(#{item.Type}) is #{item.Movie_Price}
           button.btn(class="btn-success btn-sm ml-1", style="margin: 7px; width: 140px;", onclick=`dispatch(\"/Movie/detail?id=${item._id}\")`) View
           button.btn(class="btn-warning btn-sm ml-1", style="margin: 7px; width: 140px;", onclick= `dispatch(\"/Movie/update?id=${item._id}\")`) Update
           button.btn(class="btn-danger btn-sm ml-1", style="margin: 7px; width: 140px;", onclick= `dispatch(\"/Movie/delete?id=${item._id}\")`) Delete
